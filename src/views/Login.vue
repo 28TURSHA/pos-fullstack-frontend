@@ -9,16 +9,16 @@
       <Form @submit="handleLogin" :validation-schema="schema">
         <div class="form-group">
           <label for="username">Username</label>
-          <Field name="username" type="text" class="form-control" />
-          <ErrorMessage name="username" class="error-feedback" />
+          <input name="username" type="text"  v-model="username" placeholder="username" />
+          <!-- <ErrorMessage name="username" class="error-feedback" /> -->
         </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <Field name="password" type="password" class="form-control" />
-          <ErrorMessage name="password" class="error-feedback" />
+          <input name="password" type="password"  v-model="password" placeholder="password" />
+          <!-- <ErrorMessage name="password" class="error-feedback" /> -->
         </div>
         <div class="form-group">
-          <button class="btn btn-primary btn-block" :disabled="loading">
+          <button class="btn btn-danger" :disabled="loading">
             <span
               v-show="loading"
               class="spinner-border spinner-border-sm"

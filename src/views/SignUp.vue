@@ -9,22 +9,42 @@
       <Form @submit="handleRegister" :validation-schema="schema">
         <div v-if="!successful">
           <div class="form-group">
-            <label for="username">Username</label>
-            <Field name="username" type="text" class="form-control" />
-            <ErrorMessage name="username" class="error-feedback" />
+            <label for="first name">First name:</label>
+            <input name="first name" type="text" v-model="firstName" placeholder="first name" />
+            <!-- <ErrorMessage name="first name" class="error-feedback" /> -->
           </div>
           <div class="form-group">
-            <label for="email">Email</label>
-            <Field name="email" type="email" class="form-control" />
-            <ErrorMessage name="email" class="error-feedback" />
+            <label for="last name">Last name:</label>
+            <input name="last name" type="text" v-model="lastName" placeholder="last name" />
+            <!-- <ErrorMessage name="last name" class="error-feedback" /> -->
           </div>
           <div class="form-group">
-            <label for="password">Password</label>
-            <Field name="password" type="password" class="form-control" />
-            <ErrorMessage name="password" class="error-feedback" />
+            <label for="username">Username:</label>
+            <input name="username" type="text" v-model="username" placeholder="username" />
+            <!-- <ErrorMessage name="username" class="error-feedback" /> -->
           </div>
           <div class="form-group">
-            <button class="btn btn-primary btn-block" :disabled="loading">
+            <label for="email">E-mail address:</label>
+            <input name="email" type="email" v-model="email" placeholder="email" />
+            <!-- <ErrorMessage name="email" class="error-feedback" /> -->
+          </div>
+          <div class="form-group">
+            <label for="telephone">Telephone:</label>
+            <input name="telephone" type="text" v-model="telephone" placeholder="telephone" />
+            <!-- <ErrorMessage name="telephone" class="error-feedback" /> -->
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input name="password" type="password" v-model="password" placeholder="password"/>
+            <!-- <ErrorMessage name="password" class="error-feedback" /> -->
+          </div>
+          <div class="form-group">
+            <label for="password">Repeat password:</label>
+            <input name="password" type="password" v-model="password" placeholder="password" />
+            <!-- <ErrorMessage name="password" class="error-feedback" /> -->
+          </div>
+          <div class="form-group">
+            <button class="btn btn-danger " :disabled="loading">
               <span
                 v-show="loading"
                 class="spinner-border spinner-border-sm"
@@ -56,7 +76,17 @@ export default {
   },
   data() {
     const schema = yup.object().shape({
-      username: yup
+     firstname: yup
+        .string()
+        .required("First name is required!")
+        .min(3, "Must be at least 3 characters!")
+        .max(20, "Must be maximum 20 characters!"),
+     lastname: yup
+        .string()
+        .required("Last name is required!")
+        .min(3, "Must be at least 3 characters!")
+        .max(20, "Must be maximum 20 characters!"),
+     username: yup
         .string()
         .required("Username is required!")
         .min(3, "Must be at least 3 characters!")
@@ -66,6 +96,11 @@ export default {
         .required("Email is required!")
         .email("Email is invalid!")
         .max(50, "Must be maximum 50 characters!"),
+        telephone: yup
+        .string()
+        .required("Telephone is required!")
+        .min(3, "Must be at least 3 characters!")
+        .max(20, "Must be maximum 20 characters!"),
       password: yup
         .string()
         .required("Password is required!")
@@ -115,3 +150,6 @@ export default {
   },
 };
 </script>
+<style>
+
+</style>
