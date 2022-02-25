@@ -1,10 +1,10 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from '../components/Home.vue'
-import Login from '../components/Login.vue'
-import SignUp from '../components/SignUp.vue'
-import Cart from '../components/Cart.vue'
-import Profile from '../components/Profile.vue'
-import Products from '../components/Products.vue'
+import Home from '../views/Home.vue'
+import Login from '../views/Login.vue'
+import SignUp from '../views/SignUp.vue'
+import Cart from '../views/Cart.vue'
+import Profile from '../views/Profile.vue'
+import Products from '../views/Products.vue'
 const routes = [
   {
     path: '/',

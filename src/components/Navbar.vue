@@ -2,13 +2,19 @@
 <template>
   <MDBNavbar expand="lg" light bg="light" container>
     <MDBNavbarNav class="d-flex flex-row">
+           <MDBNavbarItem router-link :to="{name:'Home'}" active> Home </MDBNavbarItem>
+           <MDBNavbarItem router-link :to="{name:'Login'}" active> Login </MDBNavbarItem>
+            <MDBNavbarItem router-link :to="{name:'SignUp'}" active> SignUp </MDBNavbarItem>
+             <MDBNavbarItem router-link :to="{name:'Profile'}" active> Profile </MDBNavbarItem>
+             <MDBNavbarItem router-link :to="{name:'Products'}" active> Products </MDBNavbarItem>
+             <MDBNavbarItem router-link :to="{name:'Cart'}" active> Cart </MDBNavbarItem>
+
+
       <!-- Icons -->
-      <MDBNavbarItem to="#" class="me-3 me-lg-0">
+      <MDBNavbarItem :to="{name:'Cart'}" class="me-3 me-lg-0">
         <MDBIcon icon="shopping-cart"></MDBIcon>
       </MDBNavbarItem>
-      <!-- <MDBNavbarItem href="#" class="me-3 me-lg-0">
-        <MDBIcon iconStyle="fab" icon="twitter"></MDBIcon>
-      </MDBNavbarItem> -->
+      
       <!-- Icon dropdown -->
       <MDBNavbarItem class="me-3 me-lg-0 dropdown">
         <MDBDropdown v-model="dropdown3">
@@ -16,9 +22,9 @@
             <MDBIcon icon="user" />
           </MDBDropdownToggle>
           <MDBDropdownMenu>
-            <MDBDropdownItem href="#">Login</MDBDropdownItem>
-            <MDBDropdownItem href="#">Sign Up</MDBDropdownItem>
-            <MDBDropdownItem href="#">Profile</MDBDropdownItem>
+            <MDBDropdownItem router-link :to="{name:'Login'}">Login</MDBDropdownItem>
+            <MDBDropdownItem router-link :to="{name:'SignUp'}">Sign Up</MDBDropdownItem>
+            <MDBDropdownItem router-link :to="{name:'Profile'}">Profile</MDBDropdownItem>
           </MDBDropdownMenu>
         </MDBDropdown>
       </MDBNavbarItem>
@@ -60,4 +66,7 @@
       }
     }
   };
+</script>
+<script>
+
 </script>
