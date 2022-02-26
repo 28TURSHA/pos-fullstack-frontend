@@ -2,7 +2,7 @@
    <div class="products">
        <!-- <div v-for="product of products" :key="product.id" class="card__container"> -->
        <div class="card">
-        <img src = url(https://i.postimg.cc/8PrRLmpJ/2face.jpg) class="card-img-top" >
+        <img src = "https://i.postimg.cc/8PrRLmpJ/2face.jpg" class="card-img-top" >
         <div class="card-body">
           <h5 class="card-title">product.title</h5>
           <h5 class="card-title">product.category</h5>
@@ -31,9 +31,10 @@
 .products {
   display: flex;
   flex-wrap: wrap;
+  margin-left: 50px;
 }
 .card{
-    max-height:500px;
+    max-height:700px;
     padding: auto;
     text-align: center;
     box-shadow: 25px 25px 50px #2d302f;
