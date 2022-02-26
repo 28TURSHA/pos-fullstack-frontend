@@ -99,4 +99,8 @@ export default {
   },
 };
 </script>
-<script></script>
+<style>
+a{
+  cursor: pointer;
+}
+</style>
