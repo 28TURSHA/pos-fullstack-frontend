@@ -100,7 +100,7 @@ label {
   box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.65);
   height: 460px;
   margin: 6rem auto 8.1rem auto;
-  width: 329px;
+  width: 330px;
 }
 #card-content {
   padding: 12px 44px;
