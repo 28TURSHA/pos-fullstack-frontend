@@ -9,7 +9,9 @@ import Navbar from "@/components/Navbar.vue";
 
 export default {
   components:{
-    Navbar
+    Navbar,
+    
+  
   }
 }
 </script>
@@ -33,6 +35,6 @@ export default {
 }
 
 #nav a.router-link-exact-active {
-  color: red;
+  color: #24c64f;
 }
 </style>

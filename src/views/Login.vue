@@ -1,6 +1,7 @@
 <template>
   <div class="col-md-12">
-    <div class="card card-container">
+    <div class="card">
+      <div class="card-content">
       <div id="card-title">
         <h2>LOGIN</h2>
         <div class="underline-title"></div>
@@ -17,7 +18,7 @@
           <!-- <ErrorMessage name="password" class="error-feedback" /> -->
         </div>
         <div class="form-group">
-          <button class="btn btn-danger" :disabled="loading" id="submit-btn">
+          <button class="btn" :disabled="loading" id="submit-btn">
             <span
               v-show="loading"
               class="spinner-border spinner-border-sm"
@@ -33,6 +34,7 @@
       </Form>
     </div>
   </div>
+ </div>
 </template>
 <script>
 
@@ -100,13 +102,6 @@ label {
   font-family: "Raleway", sans-serif;
   font-size: 11pt;
 }
-#forgot-pass {
-  color: #2dbd6e;
-  font-family: "Raleway", sans-serif;
-  font-size: 10pt;
-  margin-top: 3px;
-  text-align: right;
-}
 #card {
   background: #fbfbfb;
   border-radius: 8px;
@@ -125,13 +120,7 @@ label {
   padding-top: 13px;
   text-align: center;
 }
-#signup {
-  color: #2dbd6e;
-  font-family: "Raleway", sans-serif;
-  font-size: 10pt;
-  margin-top: 16px;
-  text-align: center;
-}
+
 #submit-btn {
   background: -webkit-linear-gradient(right, #a6f77b, #2dbd6e);
   border: none;

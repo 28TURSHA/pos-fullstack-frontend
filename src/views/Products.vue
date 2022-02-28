@@ -1,4 +1,40 @@
 <template>
+    <div class="container d-flex justify-content-end mb-3 mt-5 pt-4">
+      <div class="d-flex w-25 ms-3">
+        <label for="" class="form-label">Sort by category</label>
+        <select
+          class="form-select"
+          name=""
+          id="sortCategory"
+          onchange="sortCategory()"
+        >
+          <option value="All">All</option>
+          <option value="Hoodies">Hoodies</option>
+          <option value="Crewnecks">Crewnecks</option>
+          <option value="Cropped hoodies">Cropped hoodies</option>
+        </select>
+      </div>
+      <div class="d-flex w-25 ms-3">
+        <label for="" class="form-label">Sort name</label>
+        <select class="form-select" name="" id="sortName" onchange="sortName()">
+          <option value="ascending">Ascending</option>
+          <option value="descending">Descending</option>
+        </select>
+      </div>
+      <div class="d-flex w-25 ms-3">
+        <label for="" class="form-label">Sort price</label>
+        <select
+          class="form-select"
+          name=""
+          id="sortPrice"
+          onchange="sortPrice()"
+        >
+          <option value="ascending">Ascending</option>
+          <option value="descending">Descending</option>
+        </select>
+      </div>
+    </div>
+
    <div class="products">
        <!-- <div v-for="product of products" :key="product.id" class="card__container"> -->
        <div class="card">
