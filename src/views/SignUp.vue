@@ -1,65 +1,38 @@
 <template>
-  <div class="col-md-12">
-    <div class="card card-container">
-     <div id="card-title">
+  <div id="card">
+    <div id="card-content">
+      <div id="card-title">
         <h2>SIGN UP</h2>
         <div class="underline-title"></div>
       </div>
-      <Form @submit="handleRegister" :validation-schema="schema">
+      <Form @submit="handleLogin" :validation-schema="schema">
         <div v-if="!successful">
-          <div class="form-group">
-            <label for="first name">First name:</label>
-            <input name="first name" type="text" v-model="firstName" placeholder="first name" />
-            <!-- <ErrorMessage name="first name" class="error-feedback" /> -->
-          </div>
-          <div class="form-group">
-            <label for="last name">Last name:</label>
-            <input name="last name" type="text" v-model="lastName" placeholder="last name" />
-            <!-- <ErrorMessage name="last name" class="error-feedback" /> -->
-          </div>
-          <div class="form-group">
-            <label for="username">Username:</label>
-            <input name="username" type="text" v-model="username" placeholder="username" />
-            <!-- <ErrorMessage name="username" class="error-feedback" /> -->
-          </div>
-          <div class="form-group">
-            <label for="email">E-mail address:</label>
-            <input name="email" type="email" v-model="email" placeholder="email" />
-            <!-- <ErrorMessage name="email" class="error-feedback" /> -->
-          </div>
-          <div class="form-group">
-            <label for="telephone">Telephone:</label>
-            <input name="telephone" type="text" v-model="telephone" placeholder="telephone" />
-            <!-- <ErrorMessage name="telephone" class="error-feedback" /> -->
-          </div>
-          <div class="form-group">
-            <label for="password">Password:</label>
-            <input name="password" type="password" v-model="password" placeholder="password"/>
-            <!-- <ErrorMessage name="password" class="error-feedback" /> -->
-          </div>
-          <div class="form-group">
-            <label for="password">Repeat password:</label>
-            <input name="password" type="password" v-model="password" placeholder="password" />
-            <!-- <ErrorMessage name="password" class="error-feedback" /> -->
-          </div>
-          <div class="form-group">
-            <button class="btn btn-danger " :disabled="loading" id="submit-btn">
-              <span
-                v-show="loading"
-                class="spinner-border spinner-border-sm"
-              ></span>
-              Sign Up
-            </button>
-          </div>
+        <label for="first name" style="padding-top:13px"> &nbsp;First Name</label>
+        <input id="first name" class="form-content" type="first name"  v-model="firstName"  required />
+        <div class="form-border"></div>
+
+         <label for="last name" style="padding-top:13px"> &nbsp;Last Name</label>
+        <input id="last name" class="form-content" type="last name"  v-model="lastName"  required />
+        <div class="form-border"></div>
+
+         <label for="username" style="padding-top:13px"> &nbsp;Username</label>
+        <input id="username" class="form-content" type="username"  v-model="username"  required />
+        <div class="form-border"></div>
+
+          <label for="user-email" style="padding-top:13px"> &nbsp;Email </label>
+        <input id="user-email" class="form-content" type="email" name="email" v-model="email"  required />
+        
+        <div class="form-border"></div>
+        <label for="user-password" style="padding-top:22px">&nbsp;Password
+          </label>
+        <input id="user-password" class="form-content" type="password" name="password" v-model="password" required />
+        <div class="form-border"></div>
+       
+        <input id="submit-btn" type="submit" name="submit" value="SIGN UP" />
+        <br>
+        <a href="#" id="signup">Want to edit your profile?</a>
         </div>
       </Form>
-      <div
-        v-if="message"
-        class="alert"
-        :class="successful ? 'alert-success' : 'alert-danger'"
-      >
-        {{ message }}
-      </div>
     </div>
   </div>
 </template>
@@ -172,7 +145,7 @@ label {
   background: #fbfbfb;
   border-radius: 8px;
   box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.65);
-  height: 410px;
+  height: 650px;
   margin: 6rem auto 8.1rem auto;
   width: 329px;
 }

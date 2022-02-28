@@ -1,40 +1,32 @@
 <template>
-  <div class="col-md-12">
-    <div class="card">
-      <div class="card-content">
+  <div id="card">
+    <div id="card-content">
       <div id="card-title">
         <h2>LOGIN</h2>
         <div class="underline-title"></div>
       </div>
       <Form @submit="handleLogin" :validation-schema="schema">
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input name="username" type="text"  v-model="username" placeholder="username" />
-          <!-- <ErrorMessage name="username" class="error-feedback" /> -->
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input name="password" type="password"  v-model="password" placeholder="password" />
-          <!-- <ErrorMessage name="password" class="error-feedback" /> -->
-        </div>
-        <div class="form-group">
-          <button class="btn" :disabled="loading" id="submit-btn">
-            <span
-              v-show="loading"
-              class="spinner-border spinner-border-sm"
-            ></span>
-            <span>Login</span>
-          </button>
-        </div>
-        <div class="form-group">
-          <div v-if="message" class="alert alert-danger" role="alert">
-            {{ message }}
-          </div>
-        </div>
+        <label for="username" style="padding-top:13px"> &nbsp;Username</label>
+        <input id="username" class="form-content" type="username"  v-model="username"  required />
+        <div class="form-border"></div>
+        
+        <label for="user-email" style="padding-top:13px">
+            &nbsp;Email
+          </label>
+        <input id="user-email" class="form-content" type="email" name="email" v-model="email" autocomplete="on" required />
+        <div class="form-border"></div>
+        <label for="user-password" style="padding-top:22px">&nbsp;Password
+          </label>
+        <input id="user-password" class="form-content" type="password" name="password" v-model="password" required />
+        <div class="form-border"></div>
+       
+        <input id="submit-btn" type="submit" name="submit" value="LOGIN" />
+        <br>
+        <a href="#" id="signup">Don't have account yet?</a>
       </Form>
     </div>
   </div>
- </div>
+ 
 </template>
 <script>
 
@@ -90,7 +82,7 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 a {
   text-decoration: none;
 }
@@ -106,7 +98,7 @@ label {
   background: #fbfbfb;
   border-radius: 8px;
   box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.65);
-  height: 410px;
+  height: 460px;
   margin: 6rem auto 8.1rem auto;
   width: 329px;
 }
