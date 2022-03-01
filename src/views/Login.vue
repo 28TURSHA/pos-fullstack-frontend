@@ -46,7 +46,8 @@
             <span>Login</span>
           </button>
         </div>
-        <a href="#" id="signup">Don't have account yet?</a>
+        <router-link :to="{ path: '/signup' }" id="signup">Don't have account yet?</router-link>
+        <!-- <a :to="{ name: 'SignUp' }" id="signup">Don't have account yet?</a> -->
         <div class="form-group">
           <div v-if="message" class="alert alert-danger" role="alert">
             {{ message }}
