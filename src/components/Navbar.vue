@@ -61,14 +61,17 @@
             </MDBIcon>
           </MDBDropdownToggle>
           <MDBDropdownMenu>
-            <MDBDropdownItem router-link :to="{ name: 'Login' }"
+            <MDBDropdownItem router-link :to="{ name: 'Login' }" v-if="!currentUser"
               >Login</MDBDropdownItem
             >
-            <MDBDropdownItem router-link :to="{ name: 'SignUp' }"
+            <MDBDropdownItem router-link :to="{ name: 'SignUp' }" v-if="!currentUser"
               >Sign Up</MDBDropdownItem
             >
-            <MDBDropdownItem router-link :to="{ name: 'Profile' }"
+            <MDBDropdownItem router-link :to="{ name: 'Profile' }" v-if="currentUser"
               >Profile</MDBDropdownItem
+            >
+            <MDBDropdownItem router-link :to="{ name: 'Home' }" @click.prevent="logOut" v-if="currentUser"
+              >Logout</MDBDropdownItem
             >
           </MDBDropdownMenu>
         </MDBDropdown>
@@ -92,6 +95,11 @@ import {
 } from "mdb-vue-ui-kit";
 import { ref } from "vue";
 export default {
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    },
+  },
   components: {
     MDBIcon,
     MDBNavbar,
@@ -110,6 +118,12 @@ export default {
       dropdown3,
     };
   },
+  methods: {
+    logOut() {
+      this.$store.dispatch('auth/logout');
+      this.$router.push('/login');
+    }
+  }
 };
 </script>
 <style>
