@@ -1,10 +1,10 @@
 import axios from 'axios';
-const API_URL = 'http://localhost:8080/api/auth/';
+const API_URL = 'https://pos-fullstack-backend.herokuapp.com/auth/';
 class AuthService{
-  login(user) {
+  async login(user) {
     return axios
       .post(API_URL + 'signin', {
-        username: user.username,
+        fullname: user.username,
         password: user.password
       })
       .then(response => {
@@ -17,11 +17,12 @@ class AuthService{
   logout() { 
     localStorage.removeItem('user');
   }
-  register(user) {
+  register(user) {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
     return axios.post(API_URL + 'signup', {
-      username: user.username,
+      fullname: user.username,
       email: user.email,
-      password: user.password
+      password: user.password,
+      phone_number: user.telephone
     });
   }
 };

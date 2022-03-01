@@ -5,7 +5,7 @@
         <h2>LOGIN</h2>
         <div class="underline-title"></div>
       </div>
-      <Form @submit="handleLogin" :validation-schema="schema">
+      <!-- <Form @submit="handleLogin" :validation-schema="schema">
         <label for="username" style="padding-top:13px"> &nbsp;Username</label>
         <input id="username" class="form-content" type="username"  v-model="username"  required />
         <div class="form-border"></div>
@@ -23,6 +23,35 @@
         <input id="submit-btn" type="submit" name="submit" value="LOGIN" />
         <br>
         <a href="#" id="signup">Don't have account yet?</a>
+      </Form> -->
+      <Form @submit="handleLogin" :validation-schema="schema">
+        <div class="form-group">
+          <label for="username" style="padding-top:13px">Username</label>
+          <Field name="username" type="text" class="form-content" />
+          <div class="form-border"></div>
+          <ErrorMessage name="username" class="error-feedback" />
+        </div>
+        <div class="form-group">
+          <label for="password" style="padding-top:13px">Password</label>
+          <Field name="password" type="password" class="form-content" />
+          <div class="form-border"></div>
+          <ErrorMessage name="password" class="error-feedback" />
+        </div>
+        <div class="form-group">
+          <button id="submit-btn" class="btn btn-primary btn-block" :disabled="loading">
+            <span
+              v-show="loading"
+              class="spinner-border spinner-border-sm"
+            ></span>
+            <span>Login</span>
+          </button>
+        </div>
+        <a href="#" id="signup">Don't have account yet?</a>
+        <div class="form-group">
+          <div v-if="message" class="alert alert-danger" role="alert">
+            {{ message }}
+          </div>
+        </div>
       </Form>
     </div>
   </div>

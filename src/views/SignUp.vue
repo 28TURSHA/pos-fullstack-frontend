@@ -5,7 +5,7 @@
         <h2>SIGN UP</h2>
         <div class="underline-title"></div>
       </div>
-      <Form @submit="handleLogin" :validation-schema="schema">
+      <!-- <Form @submit="handleLogin" :validation-schema="schema">
         <div v-if="!successful">
         <label for="first name" style="padding-top:13px"> &nbsp;First Name</label>
         <input id="first name" class="form-content" type="first name"  v-model="firstName"  required />
@@ -32,6 +32,43 @@
         <br>
         <a href="#" id="signup">Want to edit your profile?</a>
         </div>
+      </Form> -->
+      <Form @submit="handleRegister" :validation-schema="schema">
+        <div v-if="!successful">
+          <div class="form-group">
+            <label for="username" style="padding-top:13px">Username</label>
+            <Field name="username" type="text" class="form-content" />
+            <div class="form-border"></div>
+            <ErrorMessage name="username" class="error-feedback" />
+          </div>
+          <div class="form-group">
+            <label for="email" style="padding-top:13px">Email</label>
+            <Field name="email" type="email" class="form-content" />
+            <div class="form-border"></div>
+            <ErrorMessage name="email" class="error-feedback" />
+          </div>
+          <div class="form-group">
+            <label for="telephone" style="padding-top:13px">Phone Number</label>
+            <Field name="telephone" type="telephone" class="form-content" />
+            <div class="form-border"></div>
+            <ErrorMessage name="telephone" class="error-feedback" />
+          </div>
+          <div class="form-group">
+            <label for="password" style="padding-top:13px">Password</label>
+            <Field name="password" type="password" class="form-content" />
+            <div class="form-border"></div>
+            <ErrorMessage name="password" class="error-feedback" />
+          </div>
+          <div class="form-group">
+            <button id="submit-btn" class="btn btn-primary btn-block" :disabled="loading">
+              <span
+                v-show="loading"
+                class="spinner-border spinner-border-sm"
+              ></span>
+              Sign Up
+            </button>
+          </div>
+        </div>
       </Form>
     </div>
   </div>
@@ -48,27 +85,17 @@ export default {
   },
   data() {
     const schema = yup.object().shape({
-     firstname: yup
-        .string()
-        .required("First name is required!")
-        .min(3, "Must be at least 3 characters!")
-        .max(20, "Must be maximum 20 characters!"),
-     lastname: yup
-        .string()
-        .required("Last name is required!")
-        .min(3, "Must be at least 3 characters!")
-        .max(20, "Must be maximum 20 characters!"),
      username: yup
         .string()
         .required("Username is required!")
         .min(3, "Must be at least 3 characters!")
-        .max(20, "Must be maximum 20 characters!"),
+        .max(40, "Must be maximum 40 characters!"),
       email: yup
         .string()
         .required("Email is required!")
         .email("Email is invalid!")
         .max(50, "Must be maximum 50 characters!"),
-        telephone: yup
+      telephone: yup
         .string()
         .required("Telephone is required!")
         .min(3, "Must be at least 3 characters!")

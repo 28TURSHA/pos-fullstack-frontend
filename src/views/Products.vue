@@ -37,12 +37,12 @@
 
    <div class="products">
        <!-- <div v-for="product of products" :key="product.id" class="card__container"> -->
-       <div class="card">
-        <img src = "https://i.postimg.cc/8PrRLmpJ/2face.jpg" class="card-img-top" >
+       <div class="card" v-for="product in content.products" :key="product._id">
+        <img :src="product.img" class="card-img-top" >
         <div class="card-body">
-          <h5 class="card-title">product.title</h5>
-          <h5 class="card-title">product.category</h5>
-          <p class="card-text">product.price</p>
+          <h5 class="card-title">{{product.title}}</h5>
+          <h5 class="card-title">{{product.category}}</h5>
+          <p class="card-text">{{product.price}}</p>
           <div class="d-flex mb-3">
             <input type="number" class="form-control" value=1 min=1 id="addToCart${position}">
             <button type="button" class="btn ms-3" onclick="addToCart(${position})" >
@@ -63,6 +63,34 @@
    <!-- </div> -->
   
 </template>
+
+<script>
+import UserService from "../services/user.services";
+export default {
+  name: "Products",
+  data() {
+    return {
+      content: "",
+    };
+  },
+  mounted() {
+    UserService.getPublicContent().then(
+      (response) => {
+        this.content = response.data;
+      },
+      (error) => {
+        this.content =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+      }
+    );
+  },
+};
+</script>
+
 <style>
 .products {
   display: flex;
