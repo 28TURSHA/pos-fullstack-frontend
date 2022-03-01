@@ -144,7 +144,7 @@
           </button>
         </div>
       </div>
-      <div class="d-flex justify-content-end card-footer">
+      <div class="d-flex justify-content-end card-footer" v-if="currentUser.newUser._id.valueOf() == product.created_by.valueOf()">
         <button type="button" class="btn w-20" id="edit">Edit</button>
         <button type="button" class="btn w-20" id="delete">Delete</button>
       </div>
@@ -157,6 +157,11 @@
 import UserService from "../services/user.services";
 export default {
   name: "Products",
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    },
+  },
   data() {
     return {
       content: "",

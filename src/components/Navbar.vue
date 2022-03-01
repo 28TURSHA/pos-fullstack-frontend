@@ -1,7 +1,8 @@
 <template>
   <MDBNavbar expand="lg" light bg="light" container>
     <MDBNavbarNav class="d-flex flex-row">
-      <MDBNavbarItem router-link :to="{ name: 'Home' }" active>
+      <div class="startNav">
+        <MDBNavbarItem router-link :to="{ name: 'Home' }" active>
         Home
       </MDBNavbarItem>
       <MDBNavbarItem router-link :to="{ name: 'Login' }" v-if="!currentUser">
@@ -13,9 +14,11 @@
       <MDBNavbarItem router-link :to="{ name: 'Products' }" v-if="currentUser">
         Products
       </MDBNavbarItem>
+      </div>
 
       <!-- Icons -->
-      <MDBNavbarItem :to="{ name: 'Cart' }" class="me-3 me-lg-0" v-if="currentUser">
+      <div class="endNav">
+        <MDBNavbarItem :to="{ name: 'Cart' }" class="me-3 me-lg-0" v-if="currentUser">
         <MDBIcon icon="shopping-cart"
           ><svg
             xmlns="http://www.w3.org/2000/svg"
@@ -70,6 +73,7 @@
           </MDBDropdownMenu>
         </MDBDropdown>
       </MDBNavbarItem>
+      </div>
     </MDBNavbarNav>
   </MDBNavbar>
 </template>
@@ -123,5 +127,15 @@ export default {
 <style>
 a {
   cursor: pointer;
+}
+
+.navbar .container-fluid ul{
+  width: 100%;
+  justify-content: space-between;
+}
+
+.startNav, .endNav {
+  display: flex;
+  flex-direction: row;
 }
 </style>
