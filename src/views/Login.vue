@@ -88,7 +88,7 @@ a {
 }
 body {
   background: -webkit-linear-gradient(bottom, #2dbd6e, #a6f77b);
-  background-repeat: no-repeat;
+  height: 1000vh;
 }
 label {
   font-family: "Raleway", sans-serif;
@@ -96,6 +96,7 @@ label {
 }
 #card {
   background: #fbfbfb;
+ 
   border-radius: 8px;
   box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.65);
   height: 460px;
@@ -148,7 +149,7 @@ label {
 }
 .underline-title {
   background: -webkit-linear-gradient(right, #a6f77b, #2ec06f);
-  height: 2px;
+  height: 4px;
   margin: -1.1rem auto 0 auto;
   width: 89px;
 }

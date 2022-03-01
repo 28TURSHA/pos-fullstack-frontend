@@ -29,4 +29,8 @@ img{
   height: 88vh;
   width:100vh
 }
+
+.btn{
+  position: center;
+}
 </style>

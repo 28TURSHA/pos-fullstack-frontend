@@ -201,7 +201,7 @@ label {
 }
 .underline-title {
   background: -webkit-linear-gradient(right, #a6f77b, #2ec06f);
-  height: 2px;
+  height: 3px;
   margin: -1.1rem auto 0 auto;
   width: 89px;
 }
