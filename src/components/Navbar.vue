@@ -4,24 +4,18 @@
       <MDBNavbarItem router-link :to="{ name: 'Home' }" active>
         Home
       </MDBNavbarItem>
-      <MDBNavbarItem router-link :to="{ name: 'Login' }" active>
+      <MDBNavbarItem router-link :to="{ name: 'Login' }" v-if="!currentUser">
         Login
       </MDBNavbarItem>
-      <MDBNavbarItem router-link :to="{ name: 'SignUp' }" active>
+      <MDBNavbarItem router-link :to="{ name: 'SignUp' }" v-if="!currentUser">
         SignUp
       </MDBNavbarItem>
-      <MDBNavbarItem router-link :to="{ name: 'Profile' }" active>
-        Profile
-      </MDBNavbarItem>
-      <MDBNavbarItem router-link :to="{ name: 'Products' }" active>
+      <MDBNavbarItem router-link :to="{ name: 'Products' }" v-if="currentUser">
         Products
-      </MDBNavbarItem>
-      <MDBNavbarItem router-link :to="{ name: 'Cart' }" active>
-        Cart
       </MDBNavbarItem>
 
       <!-- Icons -->
-      <MDBNavbarItem :to="{ name: 'Cart' }" class="me-3 me-lg-0">
+      <MDBNavbarItem :to="{ name: 'Cart' }" class="me-3 me-lg-0" v-if="currentUser">
         <MDBIcon icon="shopping-cart"
           ><svg
             xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +32,7 @@
       </MDBNavbarItem>
 
       <!-- Icon dropdown -->
-      <MDBNavbarItem class="me-3 me-lg-0 dropdown">
+      <MDBNavbarItem class="me-3 me-lg-0 dropdown" v-if="currentUser">
         <MDBDropdown v-model="dropdown3">
           <MDBDropdownToggle
             tag="a"
@@ -61,12 +55,12 @@
             </MDBIcon>
           </MDBDropdownToggle>
           <MDBDropdownMenu>
-            <MDBDropdownItem router-link :to="{ name: 'Login' }" v-if="!currentUser"
+            <!-- <MDBDropdownItem router-link :to="{ name: 'Login' }" v-if="!currentUser"
               >Login</MDBDropdownItem
             >
             <MDBDropdownItem router-link :to="{ name: 'SignUp' }" v-if="!currentUser"
               >Sign Up</MDBDropdownItem
-            >
+            > -->
             <MDBDropdownItem router-link :to="{ name: 'Profile' }" v-if="currentUser"
               >Profile</MDBDropdownItem
             >
