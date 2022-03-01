@@ -98,11 +98,20 @@ export default {
   margin-left: 50px;
 }
 .card{
+    width: 100%;
+    max-width: 400px;
     max-height:700px;
     padding: auto;
     text-align: center;
     box-shadow: 25px 25px 50px #2d302f;
 }
+
+.card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
 #edit{
   background: -webkit-linear-gradient(right, #a6f77b, #2dbd6e);
   border: none;
