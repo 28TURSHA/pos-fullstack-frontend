@@ -10,25 +10,28 @@
           </div>
           <div class="form-group">
             <label for="category" style="padding-top:13px">category</label>
-            <Field name="category" type="category" class="form-content" />
+            <Field name="category" as="select" class="form-content">
+                <option>Crewneck</option>
+                <option>Hoodie</option>
+            </Field>
             <div class="form-border"></div>
             <ErrorMessage name="category" class="error-feedback" />
           </div>
           <div class="form-group">
             <label for="description" style="padding-top:13px">description</label>
-            <Field name="description" type="description" class="form-content" />
+            <Field name="description" type="text" class="form-content" />
             <div class="form-border"></div>
             <ErrorMessage name="description" class="error-feedback" />
           </div>
           <div class="form-group">
             <label for="img" style="padding-top:13px">img</label>
-            <Field name="img" type="img" class="form-content" />
+            <Field name="img" type="text" class="form-content" />
             <div class="form-border"></div>
             <ErrorMessage name="img" class="error-feedback" />
           </div>
           <div class="form-group">
             <label for="price" style="padding-top:13px">price</label>
-            <Field name="price" type="price" class="form-content" />
+            <Field name="price" type="text" class="form-content" />
             <div class="form-border"></div>
             <ErrorMessage name="price" class="error-feedback" />
           </div>
@@ -111,6 +114,10 @@ export default {
         display: flex;
         align-items: center;
 
+    }
+
+    .form-content {
+        width: 100%;
     }
 
     .bruh .card {
