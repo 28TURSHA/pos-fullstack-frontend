@@ -1,5 +1,5 @@
 <template>
-  <div class="bruh" @click="toggleModal">
+  <div class="bruh" @click.self="toggleModal">
       <div class="card">
         <Form @submit="createProduct" :validation-schema="schema">
           <div class="form-group">
