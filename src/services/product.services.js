@@ -15,7 +15,7 @@ class ProductService{
   }
   delete(product) {
       return axios
-        .delete(API_URL + product._id, { headers: authHeader() })
+        .delete(API_URL + product, { headers: authHeader() })
   }
   update(product) {
     return axios

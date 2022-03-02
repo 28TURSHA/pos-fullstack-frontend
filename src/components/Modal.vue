@@ -1,53 +1,53 @@
 <template>
-  <div class="bruh">
-      <Form @submit="createProduct" :validation-schema="schema">
-        <div class="form-group">
-          <label for="title" style="padding-top:13px">title</label>
-          <Field name="title" type="text" class="form-content" />
-          <div class="form-border"></div>
-          <ErrorMessage name="title" class="error-feedback" />
-        </div>
-        <div class="form-group">
-          <label for="category" style="padding-top:13px">category</label>
-          <Field name="category" type="category" class="form-content" />
-          <div class="form-border"></div>
-          <ErrorMessage name="category" class="error-feedback" />
-        </div>
-        <div class="form-group">
-          <label for="description" style="padding-top:13px">description</label>
-          <Field name="description" type="description" class="form-content" />
-          <div class="form-border"></div>
-          <ErrorMessage name="description" class="error-feedback" />
-        </div>
-        <div class="form-group">
-          <label for="img" style="padding-top:13px">img</label>
-          <Field name="img" type="img" class="form-content" />
-          <div class="form-border"></div>
-          <ErrorMessage name="img" class="error-feedback" />
-        </div>
-        <div class="form-group">
-          <label for="price" style="padding-top:13px">price</label>
-          <Field name="price" type="price" class="form-content" />
-          <div class="form-border"></div>
-          <ErrorMessage name="price" class="error-feedback" />
-        </div>
-        <div class="form-group">
-          <button id="submit-btn" class="btn btn-primary btn-block" :disabled="loading">
-            <span
-              v-show="loading"
-              class="spinner-border spinner-border-sm"
-            ></span>
-            <span>Add Product</span>
-          </button>
-        </div>
-        <router-link :to="{ path: '/signup' }" id="signup">Don't have account yet?</router-link>
-        <!-- <a :to="{ name: 'SignUp' }" id="signup">Don't have account yet?</a> -->
-        <div class="form-group">
-          <div v-if="message" class="alert alert-danger" role="alert">
-            {{ message }}
+  <div class="bruh" @click="toggleModal">
+      <div class="card">
+        <Form @submit="createProduct" :validation-schema="schema">
+          <div class="form-group">
+            <label for="title" style="padding-top:13px">title</label>
+            <Field name="title" type="text" class="form-content" />
+            <div class="form-border"></div>
+            <ErrorMessage name="title" class="error-feedback" />
           </div>
-        </div>
-      </Form>
+          <div class="form-group">
+            <label for="category" style="padding-top:13px">category</label>
+            <Field name="category" type="category" class="form-content" />
+            <div class="form-border"></div>
+            <ErrorMessage name="category" class="error-feedback" />
+          </div>
+          <div class="form-group">
+            <label for="description" style="padding-top:13px">description</label>
+            <Field name="description" type="description" class="form-content" />
+            <div class="form-border"></div>
+            <ErrorMessage name="description" class="error-feedback" />
+          </div>
+          <div class="form-group">
+            <label for="img" style="padding-top:13px">img</label>
+            <Field name="img" type="img" class="form-content" />
+            <div class="form-border"></div>
+            <ErrorMessage name="img" class="error-feedback" />
+          </div>
+          <div class="form-group">
+            <label for="price" style="padding-top:13px">price</label>
+            <Field name="price" type="price" class="form-content" />
+            <div class="form-border"></div>
+            <ErrorMessage name="price" class="error-feedback" />
+          </div>
+          <div class="form-group">
+            <button id="submit-btn" class="btn btn-primary btn-block" :disabled="loading">
+              <span
+                v-show="loading"
+                class="spinner-border spinner-border-sm"
+              ></span>
+              <span>Add Product</span>
+            </button>
+          </div>
+          <div class="form-group">
+            <div v-if="message" class="alert alert-danger" role="alert">
+              {{ message }}
+            </div>
+          </div>
+        </Form>
+      </div>
   </div>
 </template>
 
@@ -72,9 +72,13 @@ export default {
           loading: false,
           message: "",
           schema,
+          showModal: false
         };
     },
     methods: {
+        toggleModal(){
+            this.$emit('clicked')
+        },
         createProduct(product){
             this.loading = true;
             this.$store.dispatch("product/create", product).then(
@@ -98,5 +102,20 @@ export default {
 </script>
 
 <style>
+    .bruh {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
 
+    }
+
+    .bruh .card {
+        height: fit-content;
+        padding: 2rem;
+        margin: 0 auto;
+    }
 </style>
