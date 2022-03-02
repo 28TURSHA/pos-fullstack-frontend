@@ -11,8 +11,9 @@
           <div class="form-group">
             <label for="category" style="padding-top:13px">category</label>
             <Field name="category" as="select" class="form-content">
-                <option>Crewneck</option>
-                <option>Hoodie</option>
+                <option value="Crewneck">Crewneck</option>
+                <option value="Hoodie">Hoodie</option>
+                <option value="Cropped Hoodie">Cropped Hoodie</option>
             </Field>
             <div class="form-border"></div>
             <ErrorMessage name="category" class="error-feedback" />
