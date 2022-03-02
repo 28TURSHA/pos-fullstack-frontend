@@ -129,9 +129,10 @@ label {
  
   border-radius: 8px;
   box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.65);
-  height: 460px;
+  height: fit-content;
   margin: 6rem auto 8.1rem auto;
   width: 330px;
+  padding: 2rem;
 }
 #card-content {
   padding: 12px 44px;

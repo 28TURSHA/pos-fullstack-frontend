@@ -9,26 +9,30 @@
             <ErrorMessage name="title" class="error-feedback" />
           </div>
           <div class="form-group">
-            <label for="category" style="padding-top:13px">Category</label>
-            <Field name="category" type="category" class="form-content" />
+            <label for="category" style="padding-top:13px">category</label>
+            <Field name="category" as="select" class="form-content">
+                <option value="Crewneck">Crewneck</option>
+                <option value="Hoodie">Hoodie</option>
+                <option value="Cropped Hoodie">Cropped Hoodie</option>
+            </Field>
             <div class="form-border"></div>
             <ErrorMessage name="category" class="error-feedback" />
           </div>
           <div class="form-group">
-            <label for="description" style="padding-top:13px">Description</label>
-            <Field name="description" type="description" class="form-content" />
+            <label for="description" style="padding-top:13px">description</label>
+            <Field name="description" type="text" class="form-content" />
             <div class="form-border"></div>
             <ErrorMessage name="description" class="error-feedback" />
           </div>
           <div class="form-group">
-            <label for="img" style="padding-top:13px">Img</label>
-            <Field name="img" type="img" class="form-content" />
+            <label for="img" style="padding-top:13px">img</label>
+            <Field name="img" type="text" class="form-content" />
             <div class="form-border"></div>
             <ErrorMessage name="img" class="error-feedback" />
           </div>
           <div class="form-group">
-            <label for="price" style="padding-top:13px">Price</label>
-            <Field name="price" type="price" class="form-content" />
+            <label for="price" style="padding-top:13px">price</label>
+            <Field name="price" type="text" class="form-content" />
             <div class="form-border"></div>
             <ErrorMessage name="price" class="error-feedback" />
           </div>
@@ -111,6 +115,10 @@ export default {
         display: flex;
         align-items: center;
 
+    }
+
+    .form-content {
+        width: 100%;
     }
 
     .bruh .card {
