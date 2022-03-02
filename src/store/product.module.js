@@ -18,6 +18,18 @@ export const product = {
         }
       );
     },
+    delete({ commit }, product) {
+        return ProductService.delete(product).then(
+          (product) => {
+            commit("CreatedProduct", product);
+            return Promise.resolve(product);
+          },
+          (error) => {
+            commit("NotCreated");
+            return Promise.reject(error);
+          }
+        );
+      },
     // logout({ commit }) {
     //   AuthService.logout();
     //   commit("logout");

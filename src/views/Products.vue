@@ -31,6 +31,10 @@
     </div>
   </div>
 
+  <button id="submit-btn" @click="toggleModal">
+    Add Product
+  </button>
+
   <!-- Button trigger modal -->
   <!-- <button
     type="button"
@@ -146,12 +150,12 @@
         </div>
         <div class="d-flex justify-content-end card-footer" v-if="currentUser.newUser._id.valueOf() == product.created_by.valueOf()">
           <button type="button" class="btn w-20" id="edit">Edit</button>
-          <button type="button" class="btn w-20" id="delete">Delete</button>
+          <button type="button" class="btn w-20" id="delete" @click="deleteProduct(product._id)">Delete</button>
         </div>
       </div>
     </div>
 
-    <Modal/>
+    <Modal @clicked="toggleModal" v-if="showModal"/>
   </div>
 </template>
 
@@ -169,7 +173,31 @@ export default {
   data() {
     return {
       content: "",
+      showModal: false
     };
+  },
+  methods: {
+    toggleModal(){
+      this.showModal = !this.showModal
+    },
+    deleteProduct(product){
+            this.loading = true;
+            this.$store.dispatch("product/delete", product).then(
+              () => {
+                location.reload();
+              },
+              (error) => {
+                this.loading = false;
+                this.message =
+                  (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                  error.message ||
+                  error.toString();
+              }
+            );
+
+        }
   },
   mounted() {
     UserService.getPublicContent().then(
