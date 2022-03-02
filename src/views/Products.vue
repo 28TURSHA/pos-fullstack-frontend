@@ -185,7 +185,7 @@ export default {
     toggleModal(){
       this.showModal = !this.showModal
     },
-    toggleModal(){
+    toggleModal2(){
       this.showModal = !this.showModal
     },
     changeUpdater(i){
