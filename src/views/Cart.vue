@@ -2,7 +2,7 @@
   <div class="products">
     <!-- <div v-for="product of products" :key="product.id" class="card__container"> -->
     <div class="card">
-      <img src="https://i.postimg.cc/8PrRLmpJ/2face.jpg" class="card-img-top" />
+      <img src="https://i.postimg.cc/8PrRLmpJ/2face.jpg" class="card-img-top" draggable="false"/>
       <div class="card-body">
         <h5 class="card-title">product.title</h5>
         <h5 class="card-title">product.category</h5>

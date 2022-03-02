@@ -1,4 +1,5 @@
 <template>
+<div class="productsSection">
   <div class="container d-flex justify-content-end mb-3 mt-5 pt-4">
     <div class="d-flex w-25 ms-3">
       <label for="" class="form-label">Sort by category</label>
@@ -31,17 +32,17 @@
   </div>
 
   <!-- Button trigger modal -->
-  <button
+  <!-- <button
     type="button"
     class="btn btn-danger"
     data-bs-toggle="modal"
     data-bs-target="#addProductModal"
   >
     Add a product
-  </button>
+  </button> -->
 
   <!-- Modal -->
-  <div
+  <!-- <div
     class="modal fade"
     id="addProductModal"
     tabindex="-1"
@@ -110,12 +111,12 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
-   <div class="products">
+  <div class="products">
        <!-- <div v-for="product of products" :key="product.id" class="card__container"> -->
-       <div class="card" v-for="product in content.products" :key="product._id">
-        <img :src="product.img" class="card-img-top" >
+      <div class="card" v-for="product in content.products" :key="product._id">
+        <img :src="product.img" class="card-img-top" draggable="false">
         <div class="card-body">
           <h5 class="card-title">{{product.title}}</h5>
           <h5 class="card-title">{{product.category}}</h5>
@@ -134,28 +135,31 @@
                 height="26"
                 fill="currentColor"
                 class="bi bi-cart2"
-                viewBox="0 0 16 16"
-              >
+                viewBox="0 0 16 16">
                 <path
                   d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"
                 />
               </svg>
             </MDBIcon>
-          </button>
+            </button>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end card-footer" v-if="currentUser.newUser._id.valueOf() == product.created_by.valueOf()">
+          <button type="button" class="btn w-20" id="edit">Edit</button>
+          <button type="button" class="btn w-20" id="delete">Delete</button>
         </div>
       </div>
-      <div class="d-flex justify-content-end card-footer" v-if="currentUser.newUser._id.valueOf() == product.created_by.valueOf()">
-        <button type="button" class="btn w-20" id="edit">Edit</button>
-        <button type="button" class="btn w-20" id="delete">Delete</button>
-      </div>
     </div>
+
+    <Modal/>
   </div>
-  <!-- </div> -->
 </template>
 
 <script>
+import Modal from '../components/Modal.vue';
 import UserService from "../services/user.services";
 export default {
+  components: { Modal },
   name: "Products",
   computed: {
     currentUser() {
