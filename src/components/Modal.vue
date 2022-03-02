@@ -3,7 +3,7 @@
       <div class="card">
         <Form @submit="createProduct" :validation-schema="schema">
           <div class="form-group">
-            <label for="title" style="padding-top:13px">title</label>
+            <label for="title" style="padding-top:13px">Title</label>
             <Field name="title" type="text" class="form-content" />
             <div class="form-border"></div>
             <ErrorMessage name="title" class="error-feedback" />

@@ -185,8 +185,8 @@ export default {
     toggleModal(){
       this.showModal = !this.showModal
     },
-    toggleModal2(){
-      this.showModal2 = !this.showModal2
+    toggleModal(){
+      this.showModal = !this.showModal
     },
     changeUpdater(i){
       this.updateContent = this.content.products[i]
