@@ -232,6 +232,7 @@ export default {
     padding: auto;
     text-align: center;
     box-shadow: 25px 25px 50px #2d302f;
+    border-radius: 5%;
 }
 
 .card img {
