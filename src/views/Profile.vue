@@ -1,8 +1,9 @@
 <template>
   <div class="container">
     <header class="jumbotron">
+      <h1><strong>PROFILE</strong></h1>
       <h3>
-        <strong>{{ currentUser.newUser.fullname }}</strong> Profile
+        <strong>{{ currentUser.newUser.fullname }}</strong> 
       </h3>
     </header>
     <p>
