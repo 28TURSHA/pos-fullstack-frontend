@@ -3,31 +3,31 @@
       <div class="card">
         <Form @submit="createProduct" :validation-schema="schema">
           <div class="form-group">
-            <label for="title" style="padding-top:13px">title</label>
+            <label for="title" style="padding-top:13px">Title</label>
             <Field name="title" type="text" class="form-content" />
             <div class="form-border"></div>
             <ErrorMessage name="title" class="error-feedback" />
           </div>
           <div class="form-group">
-            <label for="category" style="padding-top:13px">category</label>
+            <label for="category" style="padding-top:13px">Category</label>
             <Field name="category" type="category" class="form-content" />
             <div class="form-border"></div>
             <ErrorMessage name="category" class="error-feedback" />
           </div>
           <div class="form-group">
-            <label for="description" style="padding-top:13px">description</label>
+            <label for="description" style="padding-top:13px">Description</label>
             <Field name="description" type="description" class="form-content" />
             <div class="form-border"></div>
             <ErrorMessage name="description" class="error-feedback" />
           </div>
           <div class="form-group">
-            <label for="img" style="padding-top:13px">img</label>
+            <label for="img" style="padding-top:13px">Img</label>
             <Field name="img" type="img" class="form-content" />
             <div class="form-border"></div>
             <ErrorMessage name="img" class="error-feedback" />
           </div>
           <div class="form-group">
-            <label for="price" style="padding-top:13px">price</label>
+            <label for="price" style="padding-top:13px">Price</label>
             <Field name="price" type="price" class="form-content" />
             <div class="form-border"></div>
             <ErrorMessage name="price" class="error-feedback" />
