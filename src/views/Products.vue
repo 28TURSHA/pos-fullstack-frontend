@@ -227,6 +227,8 @@ export default {
     width: 100%;
     max-width: 400px;
     max-height:700px;
+    margin-left: 30px;
+    margin-top: 30px;
     padding: auto;
     text-align: center;
     box-shadow: 25px 25px 50px #2d302f;
