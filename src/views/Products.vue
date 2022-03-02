@@ -119,7 +119,7 @@
 
   <div class="products">
        <!-- <div v-for="product of products" :key="product.id" class="card__container"> -->
-      <div class="card" v-for="product in content.products" :key="product._id">
+      <div class="card" v-for="(product, i) in content.products" :key="product._id">
         <img :src="product.img" class="card-img-top" draggable="false">
         <div class="card-body">
           <h5 class="card-title">{{product.title}}</h5>
@@ -149,21 +149,24 @@
           </div>
         </div>
         <div class="d-flex justify-content-end card-footer" v-if="currentUser.newUser._id.valueOf() == product.created_by.valueOf()">
-          <button type="button" class="btn w-20" id="edit">Edit</button>
+          <button type="button" class="btn w-20" id="edit"  @click="changeUpdater(i)">Edit</button>
           <button type="button" class="btn w-20" id="delete" @click="deleteProduct(product._id)">Delete</button>
         </div>
+        
       </div>
     </div>
 
     <Modal @clicked="toggleModal" v-if="showModal"/>
+    <UpdateModal :updateContent="updateContent" @clicked="toggleModal2" v-if="showModal2"/>
   </div>
 </template>
 
 <script>
 import Modal from '../components/Modal.vue';
-import UserService from "../services/user.services";
+import UpdateModal from '../components/UpdateModal.vue'
+import UserService from '../services/user.services'
 export default {
-  components: { Modal },
+  components: { Modal, UpdateModal },
   name: "Products",
   computed: {
     currentUser() {
@@ -173,12 +176,21 @@ export default {
   data() {
     return {
       content: "",
-      showModal: false
+      showModal: false,
+      showModal2: false,
+      updateContent: ""
     };
   },
   methods: {
     toggleModal(){
       this.showModal = !this.showModal
+    },
+    toggleModal2(){
+      this.showModal2 = !this.showModal2
+    },
+    changeUpdater(i){
+      this.updateContent = this.content.products[i]
+      this.showModal2 = !this.showModal2
     },
     deleteProduct(product){
             this.loading = true;
@@ -232,7 +244,6 @@ export default {
     padding: auto;
     text-align: center;
     box-shadow: 25px 25px 50px #2d302f;
-    border-radius: 5%;
 }
 
 .card img {
