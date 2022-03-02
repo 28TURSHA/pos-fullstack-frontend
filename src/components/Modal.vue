@@ -79,7 +79,7 @@ export default {
             this.loading = true;
             this.$store.dispatch("product/create", product).then(
               () => {
-                
+                location.reload();
               },
               (error) => {
                 this.loading = false;
