@@ -17,7 +17,7 @@
           </div>
             <p class="card-text">TOTAL: R{{ cartItem.price*cartItem.qty }}</p>
           <div class="d-flex justify-content-end card-footer" >
-            <button type="button" class="btn w-20" id="delete" @click="removeItem(cartItem)">Remove Item</button>
+            <button type="button" class="btn w-20" id="delete" @click="removeItem(cartItem._id)">Remove Item</button>
           </div>
           </div>
         </div>

@@ -269,6 +269,7 @@ h1 {
   padding: auto;
   text-align: center;
   box-shadow: 25px 25px 50px #2d302f;
+  transition: 0.5s;
 }
 
 .card img {

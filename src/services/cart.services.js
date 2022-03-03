@@ -19,7 +19,7 @@ class CartService{
   }
   deleteOne(product) {
     return axios
-      .patch(API_URL + product._id, { headers: authHeader() })
+      .patch(API_URL + product,{}, { headers: authHeader() })
   }
   update(product) {
     return axios
