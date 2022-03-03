@@ -50,7 +50,7 @@
       <span
         v-show="loading"
         class="spinner-border spinner-border-sm"
-        style="width: 150px; height: 150px"
+        style="width: 100px; height: 100px; color: white;"
       ></span>
       <div class="productsContainer">
         <div
@@ -181,7 +181,6 @@ export default {
 
     addToCart(product, i) {
       let qty = document.querySelector(`#qty${i}`).value;
-      this.loading = true;
       this.$store.dispatch("cart/add", { _id: product._id, qty }).then(
         (response) => {
           if (response.data.accessToken) {
@@ -221,9 +220,6 @@ export default {
 </script>
 
 <style>
-.section {
-  min-height: 100vh;
-}
 
 h1 {
   color: white;
