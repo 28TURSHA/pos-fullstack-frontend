@@ -50,7 +50,7 @@
       <span
         v-show="loading"
         class="spinner-border spinner-border-sm"
-        style="width: 1010px; height: 100px"
+        style="width: 100px; height: 100px"
       ></span>
       <div class="productsContainer">
         <div
@@ -224,7 +224,10 @@ export default {
 .section {
   min-height: 100vh;
 }
-
+.card:hover {
+  transform: scale(1.1);
+  transition: 0.5s;
+}
 h1 {
   color: white;
 }
@@ -262,7 +265,7 @@ h1 {
   max-width: 400px;
   max-height: 700px;
   margin-left: 20px;
-  margin-right:23px;
+  margin-right: 23px;
   margin-top: 30px;
   padding: auto;
   text-align: center;

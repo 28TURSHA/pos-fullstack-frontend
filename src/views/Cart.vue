@@ -1,5 +1,5 @@
 <template>
-  <div class="products">
+  <div class="products section">
     <span v-show="loading" class="spinner-border spinner-border-sm" style="width: 150px; height: 150px;"></span>
     <div class="productsContainer">
     <div class="card" v-for="cartItem in cart" :key="cartItem._id">
