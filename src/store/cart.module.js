@@ -43,7 +43,7 @@ export const cart = {
         );
       },
       update({ commit }, product) {
-        return ProductService.update(product).then(
+        return CartService.update(product).then(
           (product) => {
             commit("AddProduct", product);
             return Promise.resolve(product);

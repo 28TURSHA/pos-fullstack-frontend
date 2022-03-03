@@ -2,7 +2,7 @@
   <div class="products section">
     <span v-show="loading" class="spinner-border spinner-border-sm" style="width: 100px; height: 100px; color: white;"></span>
     <div class="productsContainer">
-    <div class="card mb-3" style="max-width: 540px;" v-for="cartItem in cart" :key="cartItem._id">
+    <div class="card mb-3" style="max-width: 540px;" v-for="(cartItem, i) in cart" :key="cartItem._id">
       <div class="row g-0">
         <div class="col-md-4">
           <img :src="cartItem.img" class="cartImg" alt="...">
@@ -13,7 +13,7 @@
             <p class="card-text">{{ cartItem.description }}</p>
             <div class="d-flex mb-3 align-items-center">
             <h6 class="mx-2">QTY: </h6>
-            <input type="number" class="form-control" min="1" id="addToCart${position}" :value="cartItem.qty" />
+            <input @change="updateQty(cartItem._id, i)" type="number" class="form-control qty" min="1" :value="cartItem.qty" />
           </div>
             <p class="card-text">TOTAL: R{{ cartItem.price*cartItem.qty }}</p>
           <div class="d-flex justify-content-end card-footer" >
@@ -55,9 +55,29 @@ export default {
             error.toString();
         }
       );
-    }
-  },
-  mounted() {
+    },
+    updateQty(product, i){
+      let qty = document.getElementsByClassName('qty')[i].value
+      console.log(qty)
+      this.$store.dispatch("cart/update", {_id: product, qty}).then(
+        (response) => {
+          if (response.data.accessToken) {
+            localStorage.setItem("user", JSON.stringify(response.data));
+          }
+          this.refreshCart()
+        },
+        (error) => {
+          this.loading = false;
+          this.message =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+        }
+      );
+    },
+    refreshCart(){
     this.loading = true;
     CartService.getCart().then(
       (response) => {
@@ -73,6 +93,10 @@ export default {
           error.toString();
       }
     );
+    }
+  },
+  mounted() {
+    this.refreshCart()
   },
 };
 </script>

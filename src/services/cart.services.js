@@ -23,7 +23,7 @@ class CartService{
   }
   update(product) {
     return axios
-      .put(API_URL + product._id.valueOf(),{
+      .put(API_URL + product._id,{
         qty: parseInt(product.qty)
       }, 
         { headers: authHeader() })

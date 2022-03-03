@@ -165,7 +165,7 @@ export default {
       this.loading = true;
       this.$store.dispatch("product/delete", product).then(
         () => {
-          location.reload();
+          this.refreshProducts()
         },
         (error) => {
           this.loading = false;
@@ -198,23 +198,26 @@ export default {
         }
       );
     },
+    refreshProducts(){
+      this.loading = true;
+      UserService.getPublicContent().then(
+        (response) => {
+          this.content = response.data;
+          this.loading = false;
+        },
+        (error) => {
+          this.content =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+        }
+      );
+    }
   },
   mounted() {
-    this.loading = true;
-    UserService.getPublicContent().then(
-      (response) => {
-        this.content = response.data;
-        this.loading = false;
-      },
-      (error) => {
-        this.content =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-      }
-    );
+    this.refreshProducts()
   },
 };
 </script>
