@@ -1,7 +1,8 @@
 <template>
+<h1><strong>TAKE YOUR PICK!</strong></h1>
 <div class="productsSection">
-  <div class="container d-flex justify-content-end mb-3 mt-5 pt-4">
-    <div class="d-flex w-25 ms-3">
+  <div class="container d-flex justify-content-start mb-3 mt-5 pt-4">
+    <div class="d-flex w-25 ms-5">
       <label for="" class="form-label">Sort by category</label>
       <select
         class="form-select"
@@ -15,15 +16,15 @@
         <option value="Cropped hoodies">Cropped hoodies</option>
       </select>
     </div>
-    <div class="d-flex w-25 ms-3">
-      <label for="" class="form-label">Sort name</label>
+    <div class="d-flex w-25 ms-5">
+      <label for="" class="form-label">Sort by name</label>
       <select class="form-select" name="" id="sortName" onchange="sortName()">
         <option value="ascending">Ascending</option>
         <option value="descending">Descending</option>
       </select>
     </div>
-    <div class="d-flex w-25 ms-3">
-      <label for="" class="form-label">Sort price</label>
+    <div class="d-flex w-25 ms-5">
+      <label for="" class="form-label">Sort by price</label>
       <select class="form-select" name="" id="sortPrice" onchange="sortPrice()">
         <option value="ascending">Ascending</option>
         <option value="descending">Descending</option>
@@ -230,6 +231,9 @@ export default {
 </script>
 
 <style>
+h1{
+  color:white
+}
 .products {
   display: flex;
   flex-wrap: wrap;
