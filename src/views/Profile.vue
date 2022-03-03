@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container section">
     <header class="jumbotron">
       <h1><strong>PROFILE</strong></h1>
       <h3>
@@ -36,3 +36,8 @@ export default {
   },
 };
 </script>
+<style>
+.section{
+  min-height: 100vh;
+}
+</style>
