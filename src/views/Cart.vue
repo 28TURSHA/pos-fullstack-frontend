@@ -79,4 +79,15 @@ export default {
 .section{
   min-height: 100vh
 }
+.cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.productsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 </style>
