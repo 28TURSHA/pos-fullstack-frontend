@@ -1,6 +1,7 @@
 <template>
-  <div class="products section">
-    <!-- <div v-for="product of products" :key="product.id" class="card__container"> -->
+  <div class="products">
+    <span v-show="loading" class="spinner-border spinner-border-sm" style="width: 150px; height: 150px;"></span>
+    <div class="productsContainer">
     <div class="card" v-for="cartItem in cart" :key="cartItem._id">
       <img :src="cartItem.img" class="card-img-top" draggable="false"/>
       <div class="card-body">
@@ -41,6 +42,7 @@
         <button type="button" class="btn w-20" id="delete">Delete</button>
       </div>
     </div>
+    </div>
   </div>
   <!-- </div> -->
 </template>
@@ -50,13 +52,16 @@ export default {
   name: "Cart",
   data() {
     return {
-      cart: ''
+      cart: '',
+      loading: false
     }
   },
   mounted() {
+    this.loading = true;
     CartService.getCart().then(
       (response) => {
         this.cart = response.data;
+        this.loading = false;
       },
       (error) => {
         this.cart =
