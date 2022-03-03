@@ -1,6 +1,7 @@
 <template>
 <div class="productsSection">
-  <div class="container d-flex justify-content-end mb-3 mt-5 pt-4">
+  <div class="top">
+  <div class="container d-flex justify-content-start mb-3 mt-5 pt-4">
     <div class="d-flex w-25 ms-3">
       <label for="" class="form-label">Sort by category</label>
       <select
@@ -34,9 +35,11 @@
   <button id="submit-btn" @click="toggleModal">
     Add Product
   </button>
+  </div>
 
   <div class="products">
-       <!-- <div v-for="product of products" :key="product.id" class="card__container"> -->
+    <span v-show="loading" class="spinner-border spinner-border-sm" style="width: 150px; height: 150px;"></span>
+      <div class="productsContainer">
       <div class="card" v-for="(product, i) in content.products" :key="product._id">
         <img :src="product.img" class="card-img-top" draggable="false">
         <div class="card-body">
@@ -72,6 +75,7 @@
         </div>
         
       </div>
+      </div>
     </div>
 
     <Modal @clicked="toggleModal" v-if="showModal"/>
@@ -93,6 +97,7 @@ export default {
   },
   data() {
     return {
+      loading: false,
       content: "",
       showModal: false,
       showModal2: false,
@@ -151,9 +156,11 @@ export default {
     }
   },
   mounted() {
+    this.loading = true;
     UserService.getPublicContent().then(
       (response) => {
         this.content = response.data;
+        this.loading = false;
       },
       (error) => {
         this.content =
@@ -169,6 +176,30 @@ export default {
 </script>
 
 <style>
+.products {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.productsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.top{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.top div{
+  margin: 0;
+  padding: 0;
+}
+
 .products {
   display: flex;
   flex-wrap: wrap;
