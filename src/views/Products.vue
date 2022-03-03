@@ -50,7 +50,7 @@
       <span
         v-show="loading"
         class="spinner-border spinner-border-sm"
-        style="width: 150px; height: 150px"
+        style="width: 1010px; height: 100px"
       ></span>
       <div class="productsContainer">
         <div
