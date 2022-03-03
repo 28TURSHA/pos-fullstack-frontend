@@ -1,19 +1,19 @@
 <template>
   <div class="products">
     <!-- <div v-for="product of products" :key="product.id" class="card__container"> -->
-    <div class="card">
-      <img src="https://i.postimg.cc/8PrRLmpJ/2face.jpg" class="card-img-top" draggable="false"/>
+    <div class="card" v-for="cartItem in cart" :key="cartItem._id">
+      <img :src="cartItem.img" class="card-img-top" draggable="false"/>
       <div class="card-body">
-        <h5 class="card-title">product.title</h5>
-        <h5 class="card-title">product.category</h5>
-        <p class="card-text">product.price</p>
+        <h5 class="card-title">{{ cartItem.title }}</h5>
+        <h5 class="card-title">{{ cartItem.category }}</h5>
+        <p class="card-text">{{ cartItem.price }}</p>
         <div class="d-flex mb-3">
           <input
             type="number"
             class="form-control"
-            value="1"
             min="1"
             id="addToCart${position}"
+            :value="cartItem.qty"
           />
           <button
             type="button"
@@ -38,7 +38,6 @@
         </div>
       </div>
       <div class="d-flex justify-content-end card-footer">
-        <button type="button" class="btn w-20" id="edit">Edit</button>
         <button type="button" class="btn w-20" id="delete">Delete</button>
       </div>
     </div>
@@ -46,7 +45,28 @@
   <!-- </div> -->
 </template>
 <script>
+import CartService from '../services/cart.services'
 export default {
-  name: "Login",
+  name: "Cart",
+  data() {
+    return {
+      cart: ''
+    }
+  },
+  mounted() {
+    CartService.getCart().then(
+      (response) => {
+        this.cart = response.data;
+      },
+      (error) => {
+        this.cart =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+      }
+    );
+  },
 };
 </script>

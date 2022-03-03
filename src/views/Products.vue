@@ -35,88 +35,6 @@
     Add Product
   </button>
 
-  <!-- Button trigger modal -->
-  <!-- <button
-    type="button"
-    class="btn btn-danger"
-    data-bs-toggle="modal"
-    data-bs-target="#addProductModal"
-  >
-    Add a product
-  </button> -->
-
-  <!-- Modal -->
-  <!-- <div
-    class="modal fade"
-    id="addProductModal"
-    tabindex="-1"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add product</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body">
-          <div class="mb-3">
-            <label for="addTitle" class="form-label">Title</label>
-            <input
-              class="form-control"
-              type="text"
-              name="addTitle"
-              id="addTitle"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="" class="form-label">Category</label>
-            <select class="form-select" name="addCategory" id="addCategory">
-              <option value="Stiletto">Stiletto</option>
-              <option value="Platform">Platform</option>
-              <option value="Block Heel">Block Heel</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="addPrice" class="form-label">Price</label>
-            <input
-              class="form-control"
-              type="text"
-              name="addPrice"
-              id="addPrice"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="addImg" class="form-label">Image URL</label>
-            <input class="form-control" type="text" name="addImg" id="addImg" />
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-          >
-            Close
-          </button>
-          <button
-            type="button"
-            class="btn btn-primary"
-            data-bs-dismiss="modal"
-            onclick="createProduct()"
-          >
-            Create Product
-          </button>
-        </div>
-      </div>
-    </div>
-  </div> -->
-
   <div class="products">
        <!-- <div v-for="product of products" :key="product.id" class="card__container"> -->
       <div class="card" v-for="(product, i) in content.products" :key="product._id">
@@ -126,11 +44,11 @@
           <h5 class="card-title">{{product.category}}</h5>
           <p class="card-text">{{product.price}}</p>
           <div class="d-flex mb-3">
-            <input type="number" class="form-control" value=1 min=1 id="addToCart${position}">
+            <input type="number" class="form-control" value=1 min=1 :id="`qty${i}`">
           <button
             type="button"
             class="btn ms-3"
-            onclick="addToCart(${position})"
+            @click="addToCart(product, i)"
           >
             <MDBIcon icon="shopping-cart"
               ><svg
@@ -193,23 +111,44 @@ export default {
       this.showModal2 = !this.showModal2
     },
     deleteProduct(product){
-            this.loading = true;
-            this.$store.dispatch("product/delete", product).then(
-              () => {
-                location.reload();
-              },
-              (error) => {
-                this.loading = false;
-                this.message =
-                  (error.response &&
-                    error.response.data &&
-                    error.response.data.message) ||
-                  error.message ||
-                  error.toString();
-              }
-            );
-
+      this.loading = true;
+      this.$store.dispatch("product/delete", product).then(
+        () => {
+          location.reload();
+        },
+        (error) => {
+          this.loading = false;
+          this.message =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
         }
+      );
+    },
+        
+    addToCart(product, i){
+      let qty = document.querySelector(`#qty${i}`).value
+      this.loading = true;
+      this.$store.dispatch("cart/add", {_id:product._id, qty}).then(
+        (response) => {
+          if (response.data.accessToken) {
+            localStorage.setItem('user', JSON.stringify(response.data));
+          }
+
+        },
+        (error) => {
+          this.loading = false;
+          this.message =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+        }
+      );
+    }
   },
   mounted() {
     UserService.getPublicContent().then(
