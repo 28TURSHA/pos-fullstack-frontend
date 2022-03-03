@@ -1,5 +1,5 @@
 <template>
-  <div class="products">
+  <div class="products section">
     <!-- <div v-for="product of products" :key="product.id" class="card__container"> -->
     <div class="card" v-for="cartItem in cart" :key="cartItem._id">
       <img :src="cartItem.img" class="card-img-top" draggable="false"/>
@@ -70,3 +70,8 @@ export default {
   },
 };
 </script>
+<style>
+.section{
+  min-height: 100vh
+}
+</style>
