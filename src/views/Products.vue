@@ -1,8 +1,9 @@
 <template>
 <h1><strong>TAKE YOUR PICK!</strong></h1>
 <div class="productsSection">
+  <div class="top">
   <div class="container d-flex justify-content-start mb-3 mt-5 pt-4">
-    <div class="d-flex w-25 ms-5">
+    <div class="d-flex w-25 ms-3">
       <label for="" class="form-label">Sort by category</label>
       <select
         class="form-select"
@@ -35,91 +36,11 @@
   <button id="submit-btn" @click="toggleModal">
     Add Product
   </button>
-
-  <!-- Button trigger modal -->
-  <!-- <button
-    type="button"
-    class="btn btn-danger"
-    data-bs-toggle="modal"
-    data-bs-target="#addProductModal"
-  >
-    Add a product
-  </button> -->
-
-  <!-- Modal -->
-  <!-- <div
-    class="modal fade"
-    id="addProductModal"
-    tabindex="-1"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add product</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body">
-          <div class="mb-3">
-            <label for="addTitle" class="form-label">Title</label>
-            <input
-              class="form-control"
-              type="text"
-              name="addTitle"
-              id="addTitle"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="" class="form-label">Category</label>
-            <select class="form-select" name="addCategory" id="addCategory">
-              <option value="Stiletto">Stiletto</option>
-              <option value="Platform">Platform</option>
-              <option value="Block Heel">Block Heel</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="addPrice" class="form-label">Price</label>
-            <input
-              class="form-control"
-              type="text"
-              name="addPrice"
-              id="addPrice"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="addImg" class="form-label">Image URL</label>
-            <input class="form-control" type="text" name="addImg" id="addImg" />
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-          >
-            Close
-          </button>
-          <button
-            type="button"
-            class="btn btn-primary"
-            data-bs-dismiss="modal"
-            onclick="createProduct()"
-          >
-            Create Product
-          </button>
-        </div>
-      </div>
-    </div>
-  </div> -->
+  </div>
 
   <div class="products">
-       <!-- <div v-for="product of products" :key="product.id" class="card__container"> -->
+    <span v-show="loading" class="spinner-border spinner-border-sm" style="width: 150px; height: 150px;"></span>
+      <div class="productsContainer">
       <div class="card" v-for="(product, i) in content.products" :key="product._id">
         <img :src="product.img" class="card-img-top" draggable="false">
         <div class="card-body">
@@ -127,11 +48,11 @@
           <h5 class="card-title">{{product.category}}</h5>
           <p class="card-text">{{product.price}}</p>
           <div class="d-flex mb-3">
-            <input type="number" class="form-control" value=1 min=1 id="addToCart${position}">
+            <input type="number" class="form-control" value=1 min=1 :id="`qty${i}`">
           <button
             type="button"
             class="btn ms-3"
-            onclick="addToCart(${position})"
+            @click="addToCart(product, i)"
           >
             <MDBIcon icon="shopping-cart"
               ><svg
@@ -155,6 +76,7 @@
         </div>
         
       </div>
+      </div>
     </div>
 
     <Modal @clicked="toggleModal" v-if="showModal"/>
@@ -176,6 +98,7 @@ export default {
   },
   data() {
     return {
+      loading: false,
       content: "",
       showModal: false,
       showModal2: false,
@@ -194,28 +117,51 @@ export default {
       this.showModal2 = !this.showModal2
     },
     deleteProduct(product){
-            this.loading = true;
-            this.$store.dispatch("product/delete", product).then(
-              () => {
-                location.reload();
-              },
-              (error) => {
-                this.loading = false;
-                this.message =
-                  (error.response &&
-                    error.response.data &&
-                    error.response.data.message) ||
-                  error.message ||
-                  error.toString();
-              }
-            );
-
+      this.loading = true;
+      this.$store.dispatch("product/delete", product).then(
+        () => {
+          location.reload();
+        },
+        (error) => {
+          this.loading = false;
+          this.message =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
         }
+      );
+    },
+        
+    addToCart(product, i){
+      let qty = document.querySelector(`#qty${i}`).value
+      this.loading = true;
+      this.$store.dispatch("cart/add", {_id:product._id, qty}).then(
+        (response) => {
+          if (response.data.accessToken) {
+            localStorage.setItem('user', JSON.stringify(response.data));
+          }
+
+        },
+        (error) => {
+          this.loading = false;
+          this.message =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+        }
+      );
+    }
   },
   mounted() {
+    this.loading = true;
     UserService.getPublicContent().then(
       (response) => {
         this.content = response.data;
+        this.loading = false;
       },
       (error) => {
         this.content =
@@ -234,6 +180,30 @@ export default {
 h1{
   color:white
 }
+.products {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.productsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.top{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.top div{
+  margin: 0;
+  padding: 0;
+}
+
 .products {
   display: flex;
   flex-wrap: wrap;
